@@ -45,8 +45,12 @@
             <h2>Shortcodes</h2>
 
             <pre>
-              [ambient_logic lat=[YOUR_LATTITUDE],lon=[YOUR_LONGITUDE]]
+              [ambient_logic lat=[YOUR_LATITUDE] lon=[YOUR_LONGITUDE]]
             </pre>
+
+            <p>For example:</p>
+
+            <pre>[ambient_logic lat='36.2088' lon='-81.6628']</pre>
 					</div>
 				</div>
 			</div>
