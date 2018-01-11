@@ -71,4 +71,15 @@ function ambient_logic_shortcode($atts, $content = null) {
 }
 add_shortcode('ambient_logic', 'ambient_logic_shortcode');
 
-// TODO:as create a hook for calling the API and embedding the HTML from another plugin.
+//
+// Action hook for calling the API and embedding the HTML from another plugin.
+//
+function ambient_logic_add_map($lat, $lon) {
+  global $wp_query;
+  $ambient_logic_api_key = get_option('ambient_logic_api_key');
+
+  // $content .= '<script src="https://s3.amazonaws.com/ambient-logic/Ambient-Logic-Map.js" key="'. $ambient_logic_api_key;
+  $wp_query->ambient_logic_map .= '<script src="/Ambient-Logic-Map.js" key="'. $ambient_logic_api_key;
+  $wp_query->ambient_logic_map .= '" lat='. $lon .' lng='. $lat .' w=300 h=300 text="true" ></script>';
+}
+add_action( 'ambient_logic_map', 'ambient_logic_add_map', 10, 2 );

@@ -42,7 +42,7 @@
             <hr/>
             <br/>
 
-            <h2>Shortcodes</h2>
+            <h2>Shortcode</h2>
 
             <pre>
               [ambient_logic lat=[YOUR_LATITUDE] lon=[YOUR_LONGITUDE]]
@@ -51,6 +51,41 @@
             <p>For example:</p>
 
             <pre>[ambient_logic lat='36.2088' lon='-81.6628']</pre>
+
+            <br/>
+            <hr/>
+            <br/>
+
+            <h2>Action Hook</h2>
+
+            <p>
+              Ambient Logic maps can also be integrated into themes, plugins, etc
+              using the <strong>ambient_logic_map</strong> action hook.  In the <em>functions.php</em>, or plugin
+              file, add:
+            </p>
+
+            <pre>
+              do_action(
+                'ambient_logic_map',
+                $latitude',
+                $longitude'
+              );
+            </pre>
+
+            <p>
+              <strong>Note:</strong> the <em>$latitude</em> and <em>$longitude</em> variables have to be defined by you.
+            </p>
+
+            <p>In the theme files add the following to display the map:</p>
+
+            <pre>
+              &lt;?php echo $wp_query->ambient_logic_map; ?&gt;
+            </pre>
+
+            <p>
+              For more information on <strong>do_action</strong> see the
+              <a href="https://developer.wordpress.org/reference/functions/do_action/">WordPress Documentation</a>.
+            </p>
 					</div>
 				</div>
 			</div>
