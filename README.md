@@ -4,7 +4,7 @@ Plugin to customize where and how to embed a sound map from Ambient Logic into y
 
 ## Installation
 
-Upload the zip file to your WordPress site in the Plugins Admin page and install the plugin.
+Upload the [zip file](https://github.com/asommer70/ambient-logic-wordpress/releases) to your WordPress site in the Plugins Admin page and install the plugin.
 
 Go to the Ambient Logic Settings page and enter your key.
 
