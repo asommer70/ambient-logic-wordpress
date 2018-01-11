@@ -1,6 +1,6 @@
 # Ambient Logic for WordPress
 
-Plugin to customize where and how to embed a sound map from Ambient Logic into your WordPress site.
+Plugin to customize where and how to embed a sound map from [Ambient Logic](http://www.ambient-logic.com/) into your WordPress site.
 
 ## Installation
 
