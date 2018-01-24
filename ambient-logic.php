@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Ambient Logic for WordPress
-Plugin URI: https://http://www.ambient-logic.com/
+Plugin URI: http://www.ambient-logic.com/developers
 Description: Plugin to customize where and how to embed a sound map from Ambient Logic into your WordPress site.
 Version: 0.0.2
 Author: Adam Sommer
