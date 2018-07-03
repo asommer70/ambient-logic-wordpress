@@ -127,30 +127,34 @@ function ambient_logic_shortcode($atts, $content = null) {
   $horizontal = (isset($ambient_logic_map_options->horizontal) && !empty($ambient_logic_map_options->horizontal) ? $ambient_logic_map_options->horizontal : 'false');
 
   // Setup the <script> tag for the Ambient Logic JavaScript SDK.
-  $content .= "\n\n<script type='text/javascript'>\n";
-  $content .= " var mapOptions = {\n";
-  $content .= "   address: '$address',\n";
-  $content .= "   mapID: '$map_id',\n";
-  $content .= "   h: $height,\n";
-  $content .= "   w: $width,\n";
-  $content .= "   textOn: $text_on,\n";
-  $content .= "   showArrow: $show_arrow,\n";
-  $content .= "   showScore: $show_score,\n";
-  $content .= "   showScaleline: $show_scale_line,\n";
-  $content .= "   bwMap: $bw_map,\n";
-  $content .= "   zoom: $zoom,\n";
-  $content .= "   horizontal: $horizontal,\n";
-  $content .= "   key: '$ambient_logic_api_key'\n";
-  $content .= "}\n\n";
+  // $content .= "\n\n<script type='text/javascript'>\n";
+  // $content .= " var mapOptions = {\n";
+  // $content .= "   address: '$address',\n";
+  // $content .= "   mapID: '$map_id',\n";
+  // $content .= "   h: $height,\n";
+  // $content .= "   w: $width,\n";
+  // $content .= "   textOn: $text_on,\n";
+  // $content .= "   showArrow: $show_arrow,\n";
+  // $content .= "   showScore: $show_score,\n";
+  // $content .= "   showScaleline: $show_scale_line,\n";
+  // $content .= "   bwMap: $bw_map,\n";
+  // $content .= "   zoom: $zoom,\n";
+  // $content .= "   horizontal: $horizontal,\n";
+  // $content .= "   key: '$ambient_logic_api_key'\n";
+  // $content .= "}\n\n";
 
-  $content .=  "AmbientLogic(mapOptions).build(function(error, data) {\n";
-  $content .=  "    if (error) {\n";
-  $content .=  "      console.log('front-end error:', error, 'data:', data);\n";
-  $content .=  "    } ";
-  $content .= "  });\n";
-  $content .= "</script>\n";
+  // $content .=  "AmbientLogic(mapOptions).build(function(error, data) {\n";
+  // $content .=  "    if (error) {\n";
+  // $content .=  "      console.log('front-end error:', error, 'data:', data);\n";
+  // $content .=  "    } ";
+  // $content .= "  });\n";
+  // $content .= "</script>\n";
 
-  $content .= "<div class='$map_id'></div>\n\n";
+  // $content .= "<div class='$map_id'></div>\n\n";
+
+  ob_start();
+  require(__DIR__ .'/template.php');
+  $content = ob_get_clean();
 
   return $content;
 }
