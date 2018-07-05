@@ -25,7 +25,7 @@
 
 <h2>Settings for Map</h2>
 
-<p>These settings are for using the map with the <strong>do_ation</strong> method.</p>
+<p>These options are passed into the embedded JavaScript.  Placeholders contain default values.</p>
 
 <form action="#" method="post">
   <!-- <label for="address">Address</label><br/>
