@@ -517,7 +517,7 @@
         zoom: 14, //Zoom level from 10(county scale), to 16 (address level)
         key: null, //No valid key is assumed
         address: null,
-        hotizontal: false,
+        horizontal: false,
         env: 'production'
       };
 
@@ -540,15 +540,12 @@
 
       //Hit up the node server for the key check and the rest
       mapOptions.address = mapOptions.address.replace('&#39;', "'");
-      // console.log('mapOptions.w:', mapOptions.w);
       
       //Build the API URL
-      //var url = "http://geo.ambient-logic.com/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
       var url;
       if (mapOptions.env == 'dev') {
         url = "http://localhost:3000/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
       } else {
-//        url = "http://ec2-54-237-228-147.compute-1.amazonaws.com:3000/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
         url = "http://geo.ambient-logic.com/address?key=" + mapOptions.key + "&address=" + mapOptions.address.replace(/'/, '%27').replace(/\u2019/, '%27');
       }
 
@@ -558,7 +555,6 @@
           console.log('error:', error);
           callback(error, null);
         } else {
-          //console.log('JSON_return:', JSON_return);
           self.details = buildMap(mapOptions, JSON_return);
           callback(null, self.details);
         }
