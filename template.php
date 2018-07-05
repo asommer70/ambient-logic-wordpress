@@ -1,9 +1,4 @@
 
-<?php
-
-  error_log('$horizontal: '. $horizontal);
-
-?>
 <script type="text/javascript">
   var mapOptions = {
     address: <?php echo (isset($address) && !empty($address) ? '"'. $address .'"' : "\"89 Saint Dunstan's Rd, Asheville NC\""); ?>,
