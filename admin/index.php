@@ -1,6 +1,6 @@
 <div class="wrap">
 
-	<h1>Ambient Logic for WordPress</h1>
+	<h1>Ambient Logic Noise Score</h1>
 
   <div class="flash">
     <?php echo $flash; ?>

@@ -28,7 +28,7 @@ add_filter("plugin_action_links_$plugin", 'abmient_logic_settings_link' );
 function ambient_logic_menu() {
   add_options_page(
     'Ambient Logic Noise Score',
-    'Ambient Logic',
+    'Ambient Logic Noise Score',
     'edit_pages',
     'ambient-logic',
     'ambient_logic_options_page'
