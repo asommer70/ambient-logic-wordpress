@@ -12,7 +12,8 @@
     bwMap: <?php echo $bw_map; ?>,
     zoom: <?php echo (isset($zoom) && !empty($zoom) ? $zoom : 14); ?> ,
     horizontal: <?php echo  $horizontal; ?>,
-    key: "<?php echo $ambient_logic_api_key; ?>"
+    key: "<?php echo $ambient_logic_api_key; ?>",
+    alpha: "<?php echo $alpha; ?>"
   };
 
  AmbientLogic(mapOptions).build(function(error, data) {
