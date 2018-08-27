@@ -89,6 +89,11 @@
     value="<?php echo $ambient_logic_map_options->zoom; ?>" placeholder="14"/>
   <br/><br/>
 
+  <label for="zoom">Alpha</label><br/>
+  <input type="float" name="alpha" id="alpha"
+    value="<?php echo $ambient_logic_map_options->alpha; ?>" placeholder="0.5"/>
+  <br/><br/>
+
   <br><br>
   <input class="button-secondary"
     type="submit"

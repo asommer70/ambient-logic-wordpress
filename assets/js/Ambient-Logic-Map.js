@@ -2,16 +2,16 @@
 // Copyright Ambient Logic, 2018
 // Bruce J. Ikelheimer
 // Bruce@Ambient-Logic.com
-// Version 0.97
+// Version 0.98
 // This version is designed to work better on mobile
-// 3/29/2018
+// 8/2/2018
 
 (function(global) {
 
   //  var mapOptions = {};  //This moves these options global to the function
   var AmbientLogic = function(options) {
     return new AmbientLogic.init(options);
-  };
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   //This function builds the map with the various mapOptions
@@ -26,15 +26,16 @@
     }
     var lat = Number(JSON_return.lat);
     var lng = Number(JSON_return.lng);
-
     //Check about the key
     if (!JSON_return.goodKey) { //A bad key was used - don't show the score or the arrow.
       mapOptions.showScore = false; //Don't show the score if the key is bad
       mapOptions.showArrow = false; //Dont' show the arrow if the key is bad
     }
+    if(mapOptions.showMap){
     insertDivs(score, mapOptions);
     loadOL(lat, lng, score, mapOptions);
-    //console.log('JSON_return:', JSON_return);
+    }
+    // console.log('JSON_return:', JSON_return);
     return JSON_return;
   }
 
@@ -108,25 +109,23 @@
   ////////////////////////////////////////////////////////////////////////////////
   function insertDivs(score, mapOptions) {
     //Create or find the main map DIV.
-
-    var mapStyle;
-    if (mapOptions.mapID != 'ambientLogic-89178') {
-      mapStyle = document.getElementById(mapOptions.mapID);
+    var mapStyle= document.getElementById(mapOptions.mapID);
 
       // Throw an error if there is no element with id of mapOptions.mapID.
       if (mapStyle === undefined || mapStyle === null) {
         throw 'Could not find element with an id of: ' + mapOptions.mapID;
       }
-    } else {
-      mapStyle = document.createElement("div");
-    }
+  //  } else {
+  //    mapStyle = document.createElement("div");
+  //  }
 
     mapStyle.className = mapOptions.mapID;
-    // mapOptions.w = Math.min(mapStyle.offsetWidth, mapOptions.w);
+    mapOptions.w = Math.min(mapStyle.offsetWidth, mapOptions.w);
     mapStyle.style.width = mapOptions.w.toString() + "px";
     mapStyle.style.height = mapOptions.h.toString() + "px";
 
-    if (window.innerWidth <= 420) { //We have a small screen - force the horizontal bar and make the map square
+    if (screen.width <= 420) { //We have a small screen - force the horizontal bar and make the map square
+//      if (mapStyle.offsetWidth <= 420) { //We have a small screen - force the horizontal bar and make the map square
         mapOptions.horizontal = true;  //Set horizontal true
         mapOptions.h = Math.min(mapStyle.offsetHeight, mapOptions.w);  //Make it square
         mapStyle.style.height = mapOptions.h.toString() + "px"; //Reset the height
@@ -184,7 +183,7 @@
     //Create the bottomNum div
     var bottomNum = document.createElement("div");
     var bottomNumText = document.createTextNode("5");
-    bottomNum.setAttribute("id", "AL-bottomNum");
+    bottomNum.setAttribute("id", "AL-bottomNum")
     bottomNum.appendChild(bottomNumText);
     legend.appendChild(bottomNum);
 
@@ -195,15 +194,15 @@
       thinScore.src = 'http://s3.amazonaws.com/ambient-logic/images/thinScore_horizontal.png';
       thinScore.setAttribute('style', "height: 20px; width: " + mapOptions.w.toString() + 'px');
       legend.setAttribute("style", "bottom:-30px");
-      topNum.setAttribute("style", "left: 2px; bottom: 5px");
-      bottomNum.setAttribute("style", "right: -8px; bottom: 5px");
+      topNum.setAttribute("style", "left: 5px; bottom: 5px");
+      bottomNum.setAttribute("style", "right: 0px; bottom: 5px");
 
     } else {
       thinScore.src = 'http://s3.amazonaws.com/ambient-logic/images/thinScore.png';
       thinScore.setAttribute('style', "width: 30px; height: " + mapOptions.h.toString() + 'px');
       legend.setAttribute("style", "left:-50px; top: -2px");
       topNum.setAttribute("style", "top: 0px");
-      bottomNum.setAttribute("style", "bottom: 6px");
+      bottomNum.setAttribute("style", "bottom: 4px");
     }
 
     if (mapOptions.textOn) { //Add the text to the left of the color bar
@@ -282,7 +281,7 @@
       function getIndex(num) {
         return num > score;
       }
-      var scoreIndex = score_limits.findIndex(getIndex);
+      var scoreIndex = score_limits.findIndex(getIndex)
 
       //Put the arrow in the right place based on the index
       var percent = scoreIndex / 30;
@@ -369,7 +368,7 @@
     var center = ol.proj.transform(mapCenter, 'EPSG:4326', 'EPSG:3857');
 
     var overlay = new ol.layer.Tile({
-      opacity: 0.5,
+      opacity: mapOptions.alpha,
       source: new ol.source.XYZ({
         urls: [
           'http://s3.amazonaws.com/16oct2017/ALmetric_20171015_rgb/{z}/{x}/{y}.png'
@@ -513,12 +512,14 @@
         showArrow: false, //Default for showing the score arrow
         showScore: true, //Default for showing the score in the marker
         showScaleline: true, //Default for showing the scale line
+        showMap: true, //Default is to always show the map
         bwMap: false, //What map to show - options are OSM or stamen (black and white)
         zoom: 14, //Zoom level from 10(county scale), to 16 (address level)
         key: null, //No valid key is assumed
-        address: null,
-        horizontal: false,
-        env: 'production'
+        address: null,  //No default address
+        hotizontal: false,  //Default to a verticle color scale
+        env: 'production',  //Default to production environment
+        alpha: 0.5  //Default to a map alpha channel of 0.5
       };
 
       //Deal with the defaults here
@@ -531,42 +532,47 @@
         if (typeof(this.options.showArrow) != 'undefined') mapOptions.showArrow = this.options.showArrow;
         if (typeof(this.options.showScore) != 'undefined') mapOptions.showScore = this.options.showScore;
         if (typeof(this.options.showScaleline) != 'undefined') mapOptions.showScaleline = this.options.showScaleline;
+        if (typeof(this.options.showMap) != 'undefined') mapOptions.showMap = this.options.showMap;
         if (typeof(this.options.mapID) != 'undefined') mapOptions.mapID = this.options.mapID;
         if (typeof(this.options.key) != 'undefined') mapOptions.key = this.options.key;
         if (typeof(this.options.address) != 'undefined') mapOptions.address = this.options.address;
         if (typeof(this.options.horizontal) != 'undefined') mapOptions.horizontal = this.options.horizontal;
         if (typeof(this.options.env) != 'undefined') mapOptions.env = this.options.env;
+        if (typeof(this.options.alpha) != 'undefined') mapOptions.alpha = this.options.alpha;
       }
 
       //Hit up the node server for the key check and the rest
-      mapOptions.address = mapOptions.address.replace('&#39;', "'");
-      
+
       //Build the API URL
+      //var url = "http://geo.ambient-logic.com/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
       var url;
       if (mapOptions.env == 'dev') {
         url = "http://localhost:3000/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
       } else {
-        url = "http://geo.ambient-logic.com/address?key=" + mapOptions.key + "&address=" + mapOptions.address.replace(/'/, '%27').replace(/\u2019/, '%27');
+//        url = "http://ec2-54-237-228-147.compute-1.amazonaws.com:3000/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
+        url = "http://geo.ambient-logic.com/address?key=" + mapOptions.key + "&address=" + mapOptions.address;
       }
+
 
       // Use apiReq function to grab the data.
       apiReq(url, function(error, JSON_return) {
         if (error) {
-          console.log('error:', error);
+          console.log('error:', error)
           callback(error, null);
         } else {
-          self.details = buildMap(mapOptions, JSON_return);
+          self.details = buildMap(mapOptions, JSON_return)
+                console.log(self.details);
           callback(null, self.details);
         }
       });
-    }
+    },
   };
 
   AmbientLogic.init = function(options) {
     // Self points to the object created from calling "new AmbientLogic.init(options)".
     var self = this;
     self.options = options || {};
-  };
+  }
 
   AmbientLogic.init.prototype = AmbientLogic.prototype;
 

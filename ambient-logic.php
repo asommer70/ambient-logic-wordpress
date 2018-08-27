@@ -72,7 +72,8 @@ function ambient_logic_options_page() {
         'showScaleline' => filter_input(INPUT_POST, 'showScaleline', FILTER_SANITIZE_SPECIAL_CHARS),
         'bwMap' => filter_input(INPUT_POST, 'bwMap', FILTER_SANITIZE_SPECIAL_CHARS),
         'horizontal' => filter_input(INPUT_POST, 'horizontal', FILTER_SANITIZE_SPECIAL_CHARS),
-        'zoom' => filter_input(INPUT_POST, 'zoom', FILTER_SANITIZE_SPECIAL_CHARS)
+        'zoom' => filter_input(INPUT_POST, 'zoom', FILTER_SANITIZE_SPECIAL_CHARS),
+        'alpha' => filter_input(INPUT_POST, 'alpha', FILTER_SANITIZE_SPECIAL_CHARS)
       ];
 
       if (isset($ambient_logic_map_options)) {
@@ -125,6 +126,7 @@ function ambient_logic_shortcode($atts, $content = null) {
   $bw_map = (isset($ambient_logic_map_options->bwMap) ? 'true' : 'false');
   $zoom = (isset($ambient_logic_map_options->zoom) && !empty($ambient_logic_map_options->zoom) ? $ambient_logic_map_options->zoom : 14);
   $horizontal = (isset($ambient_logic_map_options->horizontal) && !empty($ambient_logic_map_options->horizontal) ? $ambient_logic_map_options->horizontal : 'false');
+  $alpha = (isset($ambient_logic_map_options->alpha) && !empty($ambient_logic_map_options->alpha) ? $ambient_logic_map_options->alpha : 0.5);
 
   ob_start();
   require(__DIR__ .'/template.php');
@@ -157,6 +159,7 @@ function ambient_logic_add_map($options) {
   $bw_map = (isset($ambient_logic_map_options->bwMap) ? 'true' : 'false');
   $zoom = (isset($ambient_logic_map_options->zoom) && !empty($ambient_logic_map_options->zoom) ? $ambient_logic_map_options->zoom : 14);
   $horizontal = (isset($ambient_logic_map_options->horizontal) && !empty($ambient_logic_map_options->horizontal) ? $ambient_logic_map_options->horizontal : 'false');
+  $alpha = (isset($ambient_logic_map_options->alpha) && !empty($ambient_logic_map_options->alpha) ? $ambient_logic_map_options->alpha : 0.5);
 
   // Include the template.
   include(__DIR__ .'/template.php');

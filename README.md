@@ -19,6 +19,7 @@ Go to the [Ambient Logic Settings](/wp-admin/options-general.php?page=ambient-lo
 * **Black & White Map:** This is an argument that determines if a simplified black and white map is used in place of the Open Street Map as a background layer. This type of map is sometimes better in areas where the Open Street Map layer has too many elements on it and becomes confusing.
 * **Horizontal**: This option places the score, arrow, and text Horizontally below the map. This is good for small screens.
 * **Zoom**: This is a number that allows you to set the zoom level of the map. Valid values are 10 (zoomed out to the county level) to 16 (zoomed into the address level). E.g. "zoom = 12"
+* **Alpha**: This is a number between 0 and 1 that sets how transparent the map will be. E.g. "apha = 0.5"
 
 ## Shortcode
 

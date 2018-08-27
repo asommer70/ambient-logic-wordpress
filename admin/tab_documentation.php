@@ -42,6 +42,10 @@
   E.g. "zoom = 12"
 </p>
 
+<p>
+  <strong>Alpha:</strong> This is a number between 0 and 1 that sets how transparent the map will be. E.g. "apha = 0.5"
+</p>
+
 <br />
 <hr/>
 <br />
