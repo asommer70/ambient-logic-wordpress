@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Ambient Logic for WordPress
+Plugin Name: Ambient Logic Noise Score
 Plugin URI: http://www.ambient-logic.com/developers
-Description: Plugin to customize where and how to embed a map from Ambient Logic into your WordPress site.
-Version: 0.0.3
+Description: Customize where and how to embed a noise score map from Ambient Logic into your site.
+Version: 0.0.4
 Author: Adam Sommer
 Author URI: https://thehoick.com/
 License: MIT
