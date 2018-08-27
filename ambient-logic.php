@@ -27,7 +27,7 @@ add_filter("plugin_action_links_$plugin", 'abmient_logic_settings_link' );
 //
 function ambient_logic_menu() {
   add_options_page(
-    'Ambient Logic for WordPress',
+    'Ambient Logic Noise Score',
     'Ambient Logic',
     'edit_pages',
     'ambient-logic',
@@ -96,9 +96,9 @@ function ambient_logic_options_page() {
 // Add admin CSS and JavaScripts.
 //
 function ambient_logic_admin_css_and_js() {
-  wp_enqueue_style('admin_css', plugins_url('ambient-logic-wordpress/assets/css/admin.css'));
+  wp_enqueue_style('admin_css', plugins_url('ambient-logic-noise-score/assets/css/admin.css'));
 
-  wp_enqueue_script('admin_js', plugins_url('ambient-logic-wordpress/assets/js/admin.js'), ['jquery'], '', true);
+  wp_enqueue_script('admin_js', plugins_url('ambient-logic-noise-score/assets/js/admin.js'), ['jquery'], '', true);
 }
 add_action('admin_head', 'ambient_logic_admin_css_and_js');
 
@@ -172,10 +172,14 @@ add_action( 'ambient_logic_map', 'ambient_logic_add_map', 10, 1 );
 function ambient_logic_enqueus_js() {
   wp_enqueue_script(
     'ambient_logic_map',
-    plugins_url('ambient-logic-wordpress/assets/js/Ambient-Logic-Map.js'),
+    plugins_url('ambient-logic-noise-score/assets/js/Ambient-Logic-Map.js'),
 		array(),
     '0.0.1',
     false
 	);
 }
 add_action('wp_enqueue_scripts', 'ambient_logic_enqueus_js');
+
+
+
+
