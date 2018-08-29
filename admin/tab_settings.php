@@ -16,6 +16,7 @@
     name="save_ambient_logic_api_key"
     value="Save API Key"
   />
+  <?php wp_nonce_field( 'save-ambient-logic-noise-score-key' ); ?>
 </form>
 
 <br><br>
@@ -100,6 +101,8 @@
     name="save_ambient_logic_map_settings"
     value="Save Map Settings"
   />
+
+  <?php wp_nonce_field( 'save-ambient-logic-noise-score-settings' ); ?>
 </form>
 
 <br/>

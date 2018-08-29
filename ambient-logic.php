@@ -49,6 +49,8 @@ function ambient_logic_options_page() {
   // Handle saving the API key.
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['save_ambient_logic_api_key'])) {
+      check_admin_referer('save-ambient-logic-noise-score-key');
+      
       $new_key = filter_input(INPUT_POST, 'api_key', FILTER_SANITIZE_SPECIAL_CHARS);
 
       if (isset($ambient_logic_api_key)) {
@@ -61,6 +63,8 @@ function ambient_logic_options_page() {
       $flash = 'Ambient Logic API Key saved!';
 
     } else if (isset($_POST['save_ambient_logic_map_settings'])) {
+      check_admin_referer('save-ambient-logic-noise-score-settings');
+
       $new_map_options = [
         'address' => filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS),
         'mapID' => filter_input(INPUT_POST, 'mapID', FILTER_SANITIZE_SPECIAL_CHARS),
@@ -96,9 +100,9 @@ function ambient_logic_options_page() {
 // Add admin CSS and JavaScripts.
 //
 function ambient_logic_admin_css_and_js() {
-  wp_enqueue_style('admin_css', plugins_url('ambient-logic-noise-score/assets/css/admin.css'));
+  wp_enqueue_style('admin_css', plugins_url('/assets/css/admin.css', __FILE__));
 
-  wp_enqueue_script('admin_js', plugins_url('ambient-logic-noise-score/assets/js/admin.js'), ['jquery'], '', true);
+  wp_enqueue_script('admin_js', plugins_url('/assets/js/admin.js', __FILE__), ['jquery'], '', true);
 }
 add_action('admin_head', 'ambient_logic_admin_css_and_js');
 
@@ -172,7 +176,7 @@ add_action( 'ambient_logic_map', 'ambient_logic_add_map', 10, 1 );
 function ambient_logic_enqueus_js() {
   wp_enqueue_script(
     'ambient_logic_map',
-    plugins_url('ambient-logic-noise-score/assets/js/Ambient-Logic-Map.js'),
+    plugins_url('/assets/js/Ambient-Logic-Map.js', __FILE__),
 		array(),
     '0.0.1',
     false
